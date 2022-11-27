@@ -1,0 +1,17 @@
+<li class="list-group-item" style="margin-bottom:10px;" *ngIf="item && item.is_delete != true">
+  <Strong>{{ item.title }}</Strong>
+  <span class="pull-right text-info">{{ item.status }}</span>
+  <hr>
+  {{ item.description }}
+  <div class="row" style="padding-top:10;">
+    <div class="col-md-3">
+      <button class='btn btn-primary btn-block' type='button' (click)="edit()">edit item</button>
+    </div>
+    <div class="col-md-3">
+      <button class='btn btn-info btn-block' type='button' (click)="changeStatus()">change status</button>
+    </div>
+    <div class="col-md-3">
+      <button class='btn btn-danger btn-block' type='button' (click)="delete()">delete item</button>
+    </div>
+  </div>
+</li>

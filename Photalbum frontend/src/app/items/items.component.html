@@ -1,0 +1,30 @@
+<div class="container">
+  <!-- <div class="ro">
+    <div class="col-8">
+      <h1>Items</h1>
+    </div>
+    <div class="col-4">
+        <button class='btn btn-info btn-block' type='button' (click)="changeView()">Show {{currentViewType}} tasks</button>
+    </div>
+  </div> -->
+
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      <p *ngIf="!hasItems(items$ | async)" class="alert alert-danger" role="alert">
+        <Strong>You don't have any items.</Strong><br>
+        Try adding one.
+      </p>
+
+      <app-items-list></app-items-list>
+    </div>
+
+    <div class="col-md-4">
+        <app-item-add-edit></app-item-add-edit>
+    </div>
+
+  </div>
+
+</div>
