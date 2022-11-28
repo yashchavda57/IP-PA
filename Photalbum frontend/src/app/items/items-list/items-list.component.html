@@ -1,4 +1,9 @@
-
 <ul class="list-group" *ngIf="items$ | async as items">
-  <app-items-list-item *ngFor="let item of items" [item]="item"></app-items-list-item>
+  <div class="container">
+
+    <!-- <div class="row" style="height: 100%"> -->
+        <input type="text" name="Search" [(ngModel)]="searchText" placeholder="Search by label">
+        <app-items-list-item *ngFor="let item of items|filter:searchText " [item]="item" > </app-items-list-item>
+      </div>
+    <!-- </div> -->
 </ul>

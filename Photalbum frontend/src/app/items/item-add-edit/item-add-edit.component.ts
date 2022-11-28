@@ -74,7 +74,7 @@ export class ItemAddEditComponent implements OnInit {
   }
 
   private doUpdateItem() {
-    this.itemsService.update(this.itemForm.value.id , this.itemForm.value).subscribe(
+    this.itemsService.update(this.itemForm.value.id , this.itemForm.value,this.file).subscribe(
       (result) => {
         if (result) {
           this.formSubmitEvent.next('update');

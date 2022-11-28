@@ -9,6 +9,8 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemsListItemComponent } from './items-list-item/items-list-item.component';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ItemsComponent } from './items.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 const routes: Routes = [
   { path: 'items', component: ItemsComponent  },
@@ -20,7 +22,8 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    Ng2SearchPipeModule
   ],
   declarations: [
     ItemsComponent,

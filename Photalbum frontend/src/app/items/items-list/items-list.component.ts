@@ -12,6 +12,7 @@ import { ItemModel } from '../_models/item.model';
 export class ItemsListComponent implements OnInit {
 
   items$: BehaviorSubject<ItemModel[]>;
+  searchText: any;
   currentUserTodos : any;
 
   constructor(

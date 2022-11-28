@@ -68,20 +68,39 @@ export class ItemsService {
       );
   }
 
-  update(id: number , payload: any): Observable<any> {
+  update(id: number , payload: any, img: File): Observable<any> {
     payload['id'] = id;
     payload['is_delete'] = 'FALSE';
-    return this.http.post(environment['apiBaseUrl'] + 'api/v1/accounts/todos/update_data/', payload)
+    const frmData = new FormData();
+    const userId = localStorage.getItem('userId')
+    frmData.append("img",img, img.name);
+    frmData.set("user",userId);
+    frmData.set("title",payload.title);
+    frmData.set("description",payload.description);
+    frmData.set("id",payload.id);
+    frmData.set("is_delete",'False');
+    return this.http.post(environment['apiBaseUrl'] + 'api/v1/accounts/todos/update_data/', frmData)
+
       .pipe(
+
         map(responseData => {
+
             return (responseData && responseData == 'Updated Successfully') ? payload : false;
+
           }
+
         ),
+
         tap(item => { if (item) { this.updateItem(id , item); }}), // when success result, update the item in the local service
+
         catchError(err => {
+
           return of(false);
+
         }),
+
       );
+
   }
 
   changeStatus(id: number , payload: any): Observable<any> {
@@ -115,6 +134,8 @@ export class ItemsService {
     const userId = localStorage.getItem('userId')
     frmData.append("img",img, img.name);
     frmData.set("user",userId);
+    frmData.set("title",payload.title);
+    frmData.set("description",payload.description);
     console.log("UserId"+ userId)
     console.log(frmData);
     return this.http.post(environment['apiBaseUrl'] + 'api/v1/accounts/todos/' , frmData)
@@ -172,7 +193,7 @@ export class ItemsService {
   }
 
   fetch(): Observable<any> {
-    debugger;
+    // debugger;
     this.clear();
     return this.http.get(environment['apiBaseUrl'] + 'api/v1/accounts/todos/')
 

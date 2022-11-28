@@ -21,7 +21,7 @@ import { ItemsModule } from './items/items.module';
 import { ItemsService } from './items/_services/items.service';
 import { AuthService } from './_auth/services/auth.service';
 import { RegisterComponent } from './register/register.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { RegisterComponent } from './register/register.component';
     routingModule,
     ReactiveFormsModule,
     FormsModule,
-    ItemsModule
+    ItemsModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/'},

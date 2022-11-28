@@ -3,4 +3,5 @@ export interface UpdateItemModel {
     title: string;
     description ?: string;
     is_delete? : string;
+    img: string;
 }

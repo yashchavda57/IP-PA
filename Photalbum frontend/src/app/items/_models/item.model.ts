@@ -5,5 +5,5 @@ export interface ItemModel {
     user? : any;
     is_delete? : any;
     status? : any;
-    // img : File;
+    img : string;
 }
