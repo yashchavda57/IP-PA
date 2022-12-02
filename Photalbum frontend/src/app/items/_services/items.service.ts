@@ -84,14 +84,15 @@ export class ItemsService {
       .pipe(
 
         map(responseData => {
-
             return (responseData && responseData == 'Updated Successfully') ? payload : false;
-
           }
 
         ),
 
-        tap(item => { if (item) { this.updateItem(id , item); }}), // when success result, update the item in the local service
+        tap(item => { if (item) {
+
+          this.updateItem(id , item, img);
+         }}), // when success result, update the item in the local service
 
         catchError(err => {
 
@@ -111,7 +112,10 @@ export class ItemsService {
             return (responseData && responseData == 'Updated Successfully') ? payload : false;
           }
         ),
-        tap(item => { if (item) { this.updateItem(id , item); }}), // when success result, update the item in the local service
+        tap(item => { if (item) {
+
+          this.updateItem(id , item);
+         }}), // when success result, update the item in the local service
         catchError(err => {
           return of(false);
         }),
@@ -175,7 +179,7 @@ export class ItemsService {
     this.items$.next(currentItems);
   }
 
-  updateItem(id: number , item: UpdateItemModel): boolean {
+  updateItem(id: number , item: UpdateItemModel, img?:any): boolean {
     const currentItems: ItemModel[]  = this.getAll();
     if (currentItems.length > 0) {
       const index1  = currentItems.findIndex((element) => {

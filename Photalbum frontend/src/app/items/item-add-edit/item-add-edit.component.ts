@@ -37,7 +37,7 @@ export class ItemAddEditComponent implements OnInit {
 
   onChange(event) {
     this.file = event.target.files[0];
-}
+  }
 
   onSubmit($event) {
     this.isProcessing  = true;
@@ -66,6 +66,7 @@ export class ItemAddEditComponent implements OnInit {
         this.itemsService.addItem(this.itemForm.value)
         this.itemForm.reset();
         this.itemsService.fetch().subscribe((response)=>{
+          response.reverse();
           this.itemsService.items$.next(response)
         });
         this.isProcessing  = false;
@@ -76,9 +77,13 @@ export class ItemAddEditComponent implements OnInit {
   private doUpdateItem() {
     this.itemsService.update(this.itemForm.value.id , this.itemForm.value,this.file).subscribe(
       (result) => {
+        debugger;
         if (result) {
           this.formSubmitEvent.next('update');
           this.reset();
+          this.itemsService.fetch().subscribe((response)=>{
+            this.itemsService.items$.next(response)
+          });
         }
         this.isProcessing  = false;
       }

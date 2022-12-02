@@ -142,6 +142,8 @@ class TodoViewSet(viewsets.ModelViewSet):
             todo_obj.description = self.request.data.get('description')
         if self.request.data.get('status', ''):
             todo_obj.status = self.request.data.get('status')
+        if self.request.data.get('img', ''):
+            todo_obj.img = self.request.data.get('img')
 
         todo_obj.save()
         return Response("Updated Successfully", status.HTTP_200_OK)

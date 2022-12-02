@@ -101,7 +101,8 @@ export class ItemEditComponent implements OnInit, OnDestroy {
     this.itemForm = new FormGroup({
       title: new FormControl(this.item.title, Validators.required),
       description: new FormControl(this.item.description),
-      id: new FormControl(this.item.id, Validators.required)
+      id: new FormControl(this.item.id, Validators.required),
+      img: new FormControl(this.item.img, Validators.required)
     });
   }
 
